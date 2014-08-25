@@ -4,7 +4,7 @@ swift3-gatekeeper
 swift3-gatekeeper 는 openstack swift의 middleware이다.
 
 s3 관련 작업을 처리하기 위해 사용되는 내부 User Metadata가 외부에 공개되지 않도록 걸러주는 
-필터 역할을 한다.
+필터링하고, 일부 공개해야하는 Metadata는 S3 형식에 맞게 치환해주는 역할을 한다.
 
 Metadata Prefix가 '**X-Object-Meta-S3-**' 인 것들만 필터링한다.
 
