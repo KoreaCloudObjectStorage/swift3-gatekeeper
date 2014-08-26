@@ -5,7 +5,8 @@ from swift.common.swob import Request
 from swift.common.request_helpers import remove_items
 
 inbound_exclusions = ['x-object-meta-s3-', 'x-amz-meta-s3-']
-outbound_exclusions = ['x-amz-meta-s3-', 'x-amz-meta-glacier']
+outbound_exclusions = ['x-amz-meta-s3-', 'x-amz-meta-glacier',
+                       'x-lifecycle-response']
 outbound_replaces = ['x-amz-meta-s3-restore']
 
 
@@ -60,6 +61,7 @@ class Swift3GateKeeperMiddleware(object):
                     lambda h: not self.outbound_condition(h[0]),
                     response_headers)
                 return start_response(status, new_headers, exc_info)
+            return start_response(status, response_headers, exc_info)
         return self.app(env, gatekeeper_response)
 
 
