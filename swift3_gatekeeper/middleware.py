@@ -26,10 +26,10 @@ def replace_items(headers):
         keys[key] = headers.index(h)
 
     for key, i in keys.iteritems():
-        item = headers.pop(i)
+        item = headers[i]
         new_key = 'x-amz-%s' % key.split('-')[-1]
-        headers.append((new_key, item[1]))
-        replaced[key] = item[1]
+        headers[i] = (new_key, item[1])
+        replaced[key] = item[0]
     return replaced
 
 
